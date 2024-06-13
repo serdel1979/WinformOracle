@@ -12,6 +12,7 @@ namespace Oracle.Presentacion
         public frmProductos()
         {
             InitializeComponent();
+            txtBuscar.KeyDown += new KeyEventHandler(txtBuscar_KeyDown);
         }
 
 
@@ -130,6 +131,28 @@ namespace Oracle.Presentacion
 
         #endregion
 
+        private void selecciona_item()
+        {
+            object v = dgvListado.CurrentRow.Cells;
+
+            if (string.IsNullOrEmpty(dgvListado.CurrentRow.Cells["CODIGO_PRO"].Value.ToString()))
+            {
+                MessageBox.Show("Seleccione un registro",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                codigo_prod = Convert.ToInt32(dgvListado.CurrentRow.Cells["CODIGO_PRO"].Value);
+                txtProducto.Text = Convert.ToString(dgvListado.CurrentRow.Cells["DESCRIPCION"].Value);
+                txtMarca.Text = Convert.ToString(dgvListado.CurrentRow.Cells["MARCA"].Value);
+                txtMedida.Text = Convert.ToString(dgvListado.CurrentRow.Cells["MEDIDA"].Value);
+                comboCategorias.Text = Convert.ToString(dgvListado.CurrentRow.Cells["CATEGORIA"].Value);
+                txtStock.Text = Convert.ToString(dgvListado.CurrentRow.Cells["STOCK"].Value);
+            }
+        }
+
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             estado = 1; //estado nuevo
@@ -199,6 +222,42 @@ namespace Oracle.Presentacion
 
                 
             }
+        }
+
+        private void dgvListado_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this.selecciona_item();
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            if(txtBuscar.Text != "")
+            {
+                this.listado_productos(txtBuscar.Text.Trim());
+            }
+            else
+            {
+                this.listado_productos("%");
+            }
+            
+        }
+
+
+
+        private void txtBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                // Prevenir el sonido 'ding' del sistema
+                e.SuppressKeyPress = true;
+                // Llamar al método de búsqueda del botón
+                btnBuscar_Click(sender, e);
+            }
+        }
+
+        private void dgvListado_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            this.selecciona_item();
         }
     }
 }
