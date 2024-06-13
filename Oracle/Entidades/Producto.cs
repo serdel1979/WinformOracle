@@ -15,13 +15,13 @@ namespace Oracle.Entidades
         stock decimal(10,2),
         activo char(1),
      */
-    public class E_Productos
+    public class Producto
     {
         public int Codigo_pro { get; set; }
         public string Descripcion { get; set; }
         public string Marca { get; set; }
         public string Medida { get; set; }
         public decimal Stock { get; set; }
-        public string Activo { get; set; }
+        public int Categoria_id { get; set; }
     }
 }

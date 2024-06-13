@@ -37,6 +37,8 @@
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.panelTrabajo = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comboCategorias = new System.Windows.Forms.ComboBox();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
@@ -51,8 +53,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtProducto = new System.Windows.Forms.TextBox();
             this.lblDescripcion = new System.Windows.Forms.Label();
-            this.comboCategorias = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.pnlTitulo.SuspendLayout();
             this.pnlTareas.SuspendLayout();
             this.panelTrabajo.SuspendLayout();
@@ -180,6 +180,26 @@
             this.panelTrabajo.Size = new System.Drawing.Size(868, 492);
             this.panelTrabajo.TabIndex = 2;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(81, 98);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(78, 16);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Categoría";
+            // 
+            // comboCategorias
+            // 
+            this.comboCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboCategorias.Enabled = false;
+            this.comboCategorias.FormattingEnabled = true;
+            this.comboCategorias.Location = new System.Drawing.Point(183, 93);
+            this.comboCategorias.Name = "comboCategorias";
+            this.comboCategorias.Size = new System.Drawing.Size(169, 21);
+            this.comboCategorias.TabIndex = 14;
+            // 
             // btnGuardar
             // 
             this.btnGuardar.BackColor = System.Drawing.Color.Green;
@@ -192,6 +212,7 @@
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Visible = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // btnCancelar
             // 
@@ -326,26 +347,6 @@
             this.lblDescripcion.Size = new System.Drawing.Size(72, 16);
             this.lblDescripcion.TabIndex = 0;
             this.lblDescripcion.Text = "Producto";
-            // 
-            // comboCategorias
-            // 
-            this.comboCategorias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboCategorias.Enabled = false;
-            this.comboCategorias.FormattingEnabled = true;
-            this.comboCategorias.Location = new System.Drawing.Point(183, 93);
-            this.comboCategorias.Name = "comboCategorias";
-            this.comboCategorias.Size = new System.Drawing.Size(169, 21);
-            this.comboCategorias.TabIndex = 14;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(81, 98);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 16);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "Categoría";
             // 
             // frmProductos
             // 

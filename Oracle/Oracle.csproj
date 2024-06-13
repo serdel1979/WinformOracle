@@ -87,7 +87,7 @@
     </Compile>
     <Compile Include="Datos\Conexion.cs" />
     <Compile Include="Datos\DProductos.cs" />
-    <Compile Include="Entidades\E_Productos.cs" />
+    <Compile Include="Entidades\Producto.cs" />
     <Compile Include="Presentacion\frmProductos.cs">
       <SubType>Form</SubType>
     </Compile>

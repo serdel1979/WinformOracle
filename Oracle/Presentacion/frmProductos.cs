@@ -1,4 +1,5 @@
 ﻿using Oracle.Datos;
+using Oracle.Entidades;
 using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Data;
@@ -101,14 +102,14 @@ namespace Oracle.Presentacion
             dgvListado.Columns[3].Width = 100;
             dgvListado.Columns[3].HeaderText = "MEDIDA";
 
-            dgvListado.Columns[5].Width = 120;
-            dgvListado.Columns[5].HeaderText = "STOCK";
+            dgvListado.Columns[4].Width = 120;
+            dgvListado.Columns[4].HeaderText = "STOCK";
 
-            dgvListado.Columns[4].Width = 158;
-            dgvListado.Columns[4].HeaderText = "CATEGORIA";
+            dgvListado.Columns[6].Width = 158;
+            dgvListado.Columns[6].HeaderText = "CATEGORIA";
 
 
-            dgvListado.Columns[6].Visible = false;
+            dgvListado.Columns[5].Visible = false;
         }
 
 
@@ -145,6 +146,59 @@ namespace Oracle.Presentacion
          //   this.testDatabaseConnection();
             this.listado_categorias();
             this.listado_productos("%");
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (txtProducto.Text == string.Empty ||
+                txtMarca.Text == string.Empty ||
+                txtMedida.Text == string.Empty ||
+                txtStock.Text == string.Empty ||
+                comboCategorias.Text == string.Empty)
+            {
+                MessageBox.Show("Ingresar datos requeridos (*)",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Exclamation);
+            }
+            else
+            {
+                string Respuesta = "";
+                Producto producto = new Producto()
+                {
+                    Codigo_pro = codigo_prod,
+                    Descripcion = txtProducto.Text,
+                    Marca = txtMarca.Text,
+                    Medida = txtMedida.Text,
+                    Stock = Convert.ToDecimal(txtMedida.Text),
+                    Categoria_id = Convert.ToInt32(comboCategorias.SelectedValue)
+                };
+                DProductos productos = new DProductos();
+                Respuesta = productos.Guardar_producto(estado, producto);
+
+                if (Respuesta.Equals("OK"))
+                {
+                    codigo_prod = 0;
+                    this.clearTxt();
+                    this.EstadoTexto(false);
+                    this.estadoVisibilidadBotonesProceso(false);
+                    this.estadoBotonesPrincipales(false);
+                    this.listado_productos("%");
+                    MessageBox.Show("Datos guardados",
+                                        "Aviso",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(Respuesta,
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                }
+
+                
+            }
         }
     }
 }

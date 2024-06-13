@@ -1,4 +1,5 @@
-﻿using Oracle.ManagedDataAccess.Client;
+﻿using Oracle.Entidades;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -57,7 +58,7 @@ namespace Oracle.Datos
                 string cTexto = "%" + filtro + "%";
                 Sqlcon = Conexion.getInstancia().CrearConexion();
 
-                OracleCommand command = new OracleCommand("select codigo_pro, descripcion, marca, medida, stock, activo, categoria from vista_productos where descripcion like '"+filtro+"' ", Sqlcon);
+                OracleCommand command = new OracleCommand("select * from vista_productos where descripcion like '"+filtro+"' order by descripcion", Sqlcon);
                 command.CommandType = CommandType.Text;
                 Sqlcon.Open();
                 Resultado = command.ExecuteReader();
@@ -76,6 +77,44 @@ namespace Oracle.Datos
                 if (Sqlcon.State == ConnectionState.Open) Sqlcon.Close();
             }
         }
+
+
+        public string Guardar_producto(int Opcion, Producto producto )
+        {
+            string Response = "";
+            OracleConnection Sqlcon = new OracleConnection();
+
+            try
+            {
+                Sqlcon = Conexion.getInstancia().CrearConexion();
+
+                OracleCommand command = new 
+                    OracleCommand("guardar_producto", Sqlcon);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("pOpcion",OracleDbType.Int32).Value  = Opcion;
+                command.Parameters.Add("pCodigo", OracleDbType.Int32).Value = producto.Codigo_pro;
+                command.Parameters.Add("pDescripcion", OracleDbType.Varchar2).Value = producto.Descripcion;
+                command.Parameters.Add("pMarca", OracleDbType.Varchar2).Value = producto.Marca;
+                command.Parameters.Add("pMedida", OracleDbType.Varchar2).Value = producto.Medida;
+                command.Parameters.Add("pStock", OracleDbType.Decimal).Value = producto.Stock;
+                command.Parameters.Add("pCategoria_id", OracleDbType.Int32).Value = producto.Categoria_id;
+
+                Sqlcon.Open();
+                int resultado = command.ExecuteNonQuery();
+                Response = resultado == -1 ? "OK" : "No se completó la operación";
+
+            }
+            catch (Exception ex)
+            {
+                Response = ex.Message;
+            }
+            finally
+            {
+                if (Sqlcon.State == ConnectionState.Open) Sqlcon.Close();
+            }
+            return Response;
+        }
+
 
 
         public DataTable testConnection()
