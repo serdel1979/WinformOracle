@@ -66,7 +66,7 @@
             this.pnlTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTitulo.Location = new System.Drawing.Point(0, 0);
             this.pnlTitulo.Name = "pnlTitulo";
-            this.pnlTitulo.Size = new System.Drawing.Size(984, 69);
+            this.pnlTitulo.Size = new System.Drawing.Size(1068, 69);
             this.pnlTitulo.TabIndex = 0;
             // 
             // label1
@@ -89,7 +89,7 @@
             this.pnlTareas.Controls.Add(this.btnActualizar);
             this.pnlTareas.Controls.Add(this.btnNuevo);
             this.pnlTareas.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlTareas.Location = new System.Drawing.Point(784, 69);
+            this.pnlTareas.Location = new System.Drawing.Point(868, 69);
             this.pnlTareas.Name = "pnlTareas";
             this.pnlTareas.Size = new System.Drawing.Size(200, 492);
             this.pnlTareas.TabIndex = 1;
@@ -177,7 +177,7 @@
             this.panelTrabajo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTrabajo.Location = new System.Drawing.Point(0, 69);
             this.panelTrabajo.Name = "panelTrabajo";
-            this.panelTrabajo.Size = new System.Drawing.Size(784, 492);
+            this.panelTrabajo.Size = new System.Drawing.Size(868, 492);
             this.panelTrabajo.TabIndex = 2;
             // 
             // btnGuardar
@@ -185,7 +185,7 @@
             this.btnGuardar.BackColor = System.Drawing.Color.Green;
             this.btnGuardar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnGuardar.Location = new System.Drawing.Point(556, 152);
+            this.btnGuardar.Location = new System.Drawing.Point(573, 150);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(90, 30);
             this.btnGuardar.TabIndex = 13;
@@ -198,7 +198,7 @@
             this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(114)))), ((int)(((byte)(178)))));
             this.btnCancelar.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnCancelar.Location = new System.Drawing.Point(450, 152);
+            this.btnCancelar.Location = new System.Drawing.Point(467, 150);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(90, 30);
             this.btnCancelar.TabIndex = 12;
@@ -241,10 +241,10 @@
             this.dgvListado.AllowUserToDeleteRows = false;
             this.dgvListado.AllowUserToOrderColumns = true;
             this.dgvListado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListado.Location = new System.Drawing.Point(28, 250);
+            this.dgvListado.Location = new System.Drawing.Point(12, 250);
             this.dgvListado.Name = "dgvListado";
             this.dgvListado.ReadOnly = true;
-            this.dgvListado.Size = new System.Drawing.Size(735, 230);
+            this.dgvListado.Size = new System.Drawing.Size(841, 230);
             this.dgvListado.TabIndex = 8;
             // 
             // txtStock
@@ -351,7 +351,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 561);
+            this.ClientSize = new System.Drawing.Size(1068, 561);
             this.Controls.Add(this.panelTrabajo);
             this.Controls.Add(this.pnlTareas);
             this.Controls.Add(this.pnlTitulo);

@@ -45,30 +45,39 @@ namespace Oracle.Datos
             }
         }
 
-        public void ReadMyData()
+
+        public DataTable listado_productos(string filtro)
         {
+            OracleDataReader Resultado;
+            DataTable table = new DataTable();
             OracleConnection Sqlcon = new OracleConnection();
-            Sqlcon = Conexion.getInstancia().CrearConexion();
-            string queryString = "SELECT descripcion, codigo_ca FROM categorias";
-            using (OracleConnection connection = new OracleConnection(Sqlcon.ConnectionString))
+
+            try
             {
-                OracleCommand command = new OracleCommand(queryString, connection);
-                connection.Open();
-                OracleDataReader reader = command.ExecuteReader();
-                try
-                {
-                    while (reader.Read())
-                    {
-                        Console.WriteLine(reader.GetInt32(0) + ", " + reader.GetInt32(1));
-                    }
-                }
-                finally
-                {
-                    // always call Close when done reading.
-                    reader.Close();
-                }
+                string cTexto = "%" + filtro + "%";
+                Sqlcon = Conexion.getInstancia().CrearConexion();
+
+                OracleCommand command = new OracleCommand("select codigo_pro, descripcion, marca, medida, stock, activo, categoria from vista_productos where descripcion like '"+filtro+"' ", Sqlcon);
+                command.CommandType = CommandType.Text;
+                Sqlcon.Open();
+                Resultado = command.ExecuteReader();
+                table.Load(Resultado);
+
+
+                return table;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                if (Sqlcon.State == ConnectionState.Open) Sqlcon.Close();
             }
         }
+
+
         public DataTable testConnection()
         {
             DataTable table = new DataTable();

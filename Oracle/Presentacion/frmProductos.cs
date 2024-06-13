@@ -45,7 +45,7 @@ namespace Oracle.Presentacion
 
         private void estadoBotonesPrincipales(bool lEstado)
         {
-            btnNuevo.Enabled = lEstado;
+            // btnNuevo.Enabled = lEstado;
             btnActualizar.Enabled = lEstado;
             btnEliminar.Enabled = lEstado;
             btnReporte.Enabled = lEstado;
@@ -70,13 +70,47 @@ namespace Oracle.Presentacion
             txtProducto.Focus();
         }
 
-        public  void listado_categorias()
+        private void listado_categorias()
         {
             DProductos Datos = new DProductos();
-            comboCategorias.DataSource =  Datos.listado_categorias();
+            comboCategorias.DataSource = Datos.listado_categorias();
             comboCategorias.ValueMember = "codigo_ca";
-            comboCategorias.DisplayMember = "descripcion";   
+            comboCategorias.DisplayMember = "descripcion";
         }
+
+        private void listado_productos(string filtro)
+        {
+            DProductos productos = new DProductos();
+            dgvListado.DataSource = productos.listado_productos(filtro);
+
+            this.formateo_datos();
+        }
+
+
+        private void formateo_datos()
+        {
+            dgvListado.Columns[0].Width = 100;
+            dgvListado.Columns[0].HeaderText = "Codigo";
+
+            dgvListado.Columns[1].Width = 180;
+            dgvListado.Columns[1].HeaderText = "PRODUCTO";
+
+            dgvListado.Columns[2].Width = 130;
+            dgvListado.Columns[2].HeaderText = "MARCA";
+
+            dgvListado.Columns[3].Width = 100;
+            dgvListado.Columns[3].HeaderText = "MEDIDA";
+
+            dgvListado.Columns[5].Width = 120;
+            dgvListado.Columns[5].HeaderText = "STOCK";
+
+            dgvListado.Columns[4].Width = 158;
+            dgvListado.Columns[4].HeaderText = "CATEGORIA";
+
+
+            dgvListado.Columns[6].Visible = false;
+        }
+
 
         private void testDatabaseConnection()
         {
@@ -110,6 +144,7 @@ namespace Oracle.Presentacion
         {
          //   this.testDatabaseConnection();
             this.listado_categorias();
+            this.listado_productos("%");
         }
     }
 }

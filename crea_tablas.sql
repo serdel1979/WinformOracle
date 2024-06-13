@@ -65,5 +65,30 @@ BEGIN
     SELECT seq_codigo_prod.NEXTVAL INTO :NEW.codigo_pro FROM dual;
 END;
 
+
+--agrego clave foranea en productos
+ALTER TABLE productos
+ADD categoria_id NUMBER(3);
+
+ALTER TABLE productos
+ADD CONSTRAINT fk_categoria
+FOREIGN KEY (categoria_id)
+REFERENCES categorias(codigo_ca);
+
+
+
+create view vista_productos as
+select p.codigo_pro, p.descripcion,p.marca,p.medida,p.stock,p.activo,c.descripcion as categoria
+from productos p
+inner join categorias c on c.codigo_ca = p.categoria_id;
+
+
+
+
+
+
+
+
+
 --averiguo service_name para la cadena de conexion
 --SELECT value FROM v$parameter WHERE name = 'service_names';
